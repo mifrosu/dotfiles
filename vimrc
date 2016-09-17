@@ -25,6 +25,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'majutsushi/tagbar'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Raimondi/delimitMate'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
@@ -42,6 +43,8 @@ Plugin 'mxw/vim-jsx'
 " Plugins/colorschemes
 Plugin 'morhetz/gruvbox'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'sickill/vim-monokai'
+Plugin 'blockloop/vim-codeschool'
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
@@ -53,7 +56,8 @@ map <F8> :NERDTreeToggle<CR>
 
 au BufNewFile,BufRead *.coffee set filetype=coffee
 
-"colorscheme Tomorrow-Night-Bright
+"colorscheme Tomorrow-Night-Eighties
+"colorscheme codeschool
 
 set nobackup
 set history=50
@@ -179,14 +183,14 @@ map <F7> <Esc>:setlocal nospell<CR>
 " zug  undo dictionary addition
 "
 
-"" spaces for tabs (2 for ruby) 
+"" spaces for tabs (2 for ruby)
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
 """ set default syntax colours for a dark background
 set background=dark
-"highlight Comment ctermfg=Cyan
+highlight Comment ctermfg=DarkGray
 highlight PreProc cterm=bold ctermfg=Blue
 highlight Type cterm=bold ctermfg=Green
 highlight Special cterm=bold ctermfg=Yellow
@@ -197,8 +201,8 @@ hi Visual term=none cterm=none ctermbg=White ctermfg=Black  guibg=Grey
 "hi Visual term=reverse cterm=reverse guibg=Grey
 highlight Pmenu ctermfg=255 ctermbg=Magenta guibg=grey50
 highlight PmenuSel cterm=reverse ctermbg=0 ctermfg=255 guibg=Black
-"highlight folded ctermbg=235 
-"highlight FoldColumn ctermbg=0 
+"highlight folded ctermbg=235
+"highlight FoldColumn ctermbg=0
 "highlight TagListFileName ctermbg=255 ctermfg=0
 "highlight TagListFileName ctermbg=235
 "highlight StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse
@@ -213,10 +217,10 @@ let g:miniBufExplModSelTarget = 1
 " tagbar keybinding
 runtime macros/matchit.vim
 nnoremap <silent> <F9> :TagbarToggle<CR>
-let g:tagbar_singleclick = 1   " single click to jump to tag 
+let g:tagbar_singleclick = 1   " single click to jump to tag
 let g:tagbar_autoshowtag = 1   " tag will be unfolded to show current tag
 
-" NERDTree keybinding 
+" NERDTree keybinding
 nnoremap <silent> <F8> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeHijackNetrw=1
@@ -229,7 +233,7 @@ let delimitMate_expand_cr = 1
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 " enable Javascript syntax formatting for QML
-au BufNewFile,BufRead *.qml setf javascript 
+au BufNewFile,BufRead *.qml setf javascript
 
 "---------------------------------------
 " Dispatch
