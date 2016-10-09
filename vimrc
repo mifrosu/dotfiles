@@ -234,6 +234,8 @@ au BufNewFile,BufRead *.cpp set syntax=cpp11
 
 " enable Javascript syntax formatting for QML
 au BufNewFile,BufRead *.qml setf javascript
+" enable Javascript syntax formatting for .es6
+au BufNewFile,BufRead *.es6 setf javascript
 
 "---------------------------------------
 " Dispatch
