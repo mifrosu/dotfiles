@@ -39,6 +39,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/a.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'freitass/todo.txt-vim'
+Plugin 'christoomey/vim-tmux-runner'
+Plugin 'janko-m/vim-test'
 
 " Plugins/colorschemes
 Plugin 'morhetz/gruvbox'
