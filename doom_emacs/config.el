@@ -87,6 +87,9 @@
 (setq lsp-rust-analyzer-server-display-inlay-hints t)
 (setq lsp-idle-display 0.6)
 
+(after! lsp-ui
+  (setq lsp-ui-doc-show-with-cursor t))
+
 ;;(setq python-shell-interpreter "ipython3"
 ;;      python-shell-interpreter-args "-i")
 
