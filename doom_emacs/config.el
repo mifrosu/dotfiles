@@ -24,8 +24,8 @@
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 28 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 22))
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 13 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -36,8 +36,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-spacegrey)
+(setq doom-theme 'doom-one)
+;;(setq doom-theme 'doom-spacegrey)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -87,8 +87,11 @@
 (setq lsp-rust-analyzer-server-display-inlay-hints t)
 (setq lsp-idle-display 0.6)
 
-(after! lsp-ui
-  (setq lsp-ui-doc-show-with-cursor t))
+;;;; lsp-ui doc option
+;; (after! lsp-ui
+;;   (setq lsp-ui-doc-show-with-cursor t)
+;;   (setq lsp-ui-doc-show-with-mouse t)
+;; )
 
 ;;(setq python-shell-interpreter "ipython3"
 ;;      python-shell-interpreter-args "-i")
@@ -99,3 +102,6 @@
 ;;                             (append org-babel-load-languages
 ;;                              '((python     . t)
 ;;                                (ruby       . t))))
+
+(global-auto-revert-mode 1)
+(setq auto-revert-verbose t)
