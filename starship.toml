@@ -10,6 +10,7 @@ $git_commit\
 $git_state\
 $git_status\
 $battery\
+$line_break\
 $fill\
 $shell\
 $all\
