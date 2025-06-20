@@ -21,7 +21,7 @@ $character""" # note newline before character
 # [](bold yellow)$battery[](bold yellow)\
 
 [fill]
-symbol = '─'
+symbol = ' '
 style = '#222222'
 
 [line_break]
