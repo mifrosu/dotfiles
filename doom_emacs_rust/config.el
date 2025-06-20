@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ; (setq user-full-name "Michael O'Sullivan"
-;       user-mail-address "@email.com")
+;       user-mail-address "")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -15,17 +15,19 @@
 ;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
 ;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-;; - `doom-symbol-font' -- for symbols
+;; - `doom-unicode-font' -- for unicode glyphs
 ;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-;;
 
-(setq doom-font (font-spec :family "CaskaydiaMono NF" :size 12 :weight 'semi-light))
+(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 13 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -35,6 +37,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
+;;(setq doom-theme 'doom-spacegrey)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -46,6 +49,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -69,19 +73,6 @@
 ;;   this file. Emacs searches the `load-path' when you load packages with
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
-
-;; Yank to clipboard 
-(when (string-match "-[Mm]icrosoft" operating-system-release)
-  ;; WSL: WSL1 has "-Microsoft", WSL2 has "-microsoft-standard"
- (defun wsl-copy-clip (&rest _args)
-   "Copy current-kill to WSL clip.exe"
-   (setq mytemp (make-temp-file "winclip"))
-   (write-region (current-kill 0 t) nil mytemp)
-   (shell-command (concat "clip.exe < " mytemp))
-   (delete-file mytemp))
-   
- (advice-add 'kill-new :after #'wsl-copy-clip))
-
 ;;
 ;; To get information about any of these functions/macros, move the cursor over
 ;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
@@ -92,42 +83,25 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; LSP
-; LSP UI settings for better performance
-; (after! lsp-ui
-;   (setq lsp-ui-doc-enable t
-;         lsp-ui-doc-position 'at-point
-;         ; lsp-ui-doc-max-height 8
-;         ; lsp-ui-doc-max-width 72
-;         lsp-ui-doc-show-with-cursor t
-;         lsp-ui-doc-delay 0.5
-;         lsp-ui-sideline-enable nil
-;         lsp-ui-peek-enable t))
-;
-; (after! lsp-mode
-;   (setq lsp-idle-delay 0.5
-;         lsp-log-io nil
-;         lsp-completion-provider :capf
-;         lsp-enable-file-watchers nil
-;         lsp-enable-folding nil
-;         lsp-enable-text-document-color nil
-;         lsp-enable-on-type-formatting nil
-;         lsp-enable-snippet nil
-;         lsp-enable-symbol-highlighting t
-;         lsp-enable-links nil))
-;
-;; Java Configuration
-(after! lsp-java
+(setq lsp-rust-server 'rust-analyzer)
+(setq lsp-rust-analyzer-server-display-inlay-hints t)
+(setq lsp-idle-display 0.6)
 
-  (setq lombok-library-path (concat doom-data-dir "lombok.jar"))
+;;;; lsp-ui doc option
+;; (after! lsp-ui
+;;   (setq lsp-ui-doc-show-with-cursor t)
+;;   (setq lsp-ui-doc-show-with-mouse t)
+;; )
 
-  (unless (file-exists-p lombok-library-path)
-    (url-copy-file "https://projectlombok.org/downloads/lombok.jar" lombok-library-path))
+;;(setq python-shell-interpreter "ipython3"
+;;      python-shell-interpreter-args "-i")
 
-  (setq lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx4G" "-Xms100m"))
+;;(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 
-  (push (concat "-javaagent:"
-                  (expand-file-name lombok-library-path))
-          lsp-java-vmargs)
-)
+;;(org-babel-do-load-languages 'org-babel-load-languages
+;;                             (append org-babel-load-languages
+;;                              '((python     . t)
+;;                                (ruby       . t))))
 
+(global-auto-revert-mode 1)
+(setq auto-revert-verbose t)
