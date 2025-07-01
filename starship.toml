@@ -4,17 +4,17 @@
 add_newline = true
 
 format = """
+$fill\
+$shell\
+$all\
+$battery\
+$time\
+$line_break\
 $directory\
 $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$battery\
-$line_break\
-$fill\
-$shell\
-$all\
-$time\
 $line_break\
 $character""" # note newline before character
 
@@ -45,7 +45,7 @@ disabled = false                   # show the shell in the prompt
 style = "white bold"
 
 [battery]
-format = ' [$symbol$percentage]($style)'
+format = '[$symbol$percentage]($style) '
 
 [[battery.display]]
 threshold = 40
@@ -72,7 +72,7 @@ truncation_symbol = '…/'
 [git_branch]
 symbol = " "
 style = "bold white"
-format = " [$symbol$branch(:$remote_branch)]($style) "
+format = " [$symbol$branch(:$remote_branch)]($style)"
 # format = "'on [$symbol$branch(:$remote_branch)]($style) '"
 
 [git_commit]
@@ -89,10 +89,11 @@ style = "bold purple"
 # format = '([\($all_status$ahead_behind\)]($style) )'
 format = '([$all_status$ahead_behind]($style) )'
 up_to_date = ''
-modified = "•"
+modified = "✗"
 untracked = "?"
-stashed = " "
+stashed = "•"
 deleted = "del"
+# •
 
 [package]
 symbol = "󰏗 "
