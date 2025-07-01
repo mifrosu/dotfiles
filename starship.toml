@@ -71,7 +71,7 @@ truncation_symbol = '…/'
 
 [git_branch]
 symbol = " "
-style = "bold white"
+style = "bold purple"
 format = " [$symbol$branch(:$remote_branch)]($style)"
 # format = "'on [$symbol$branch(:$remote_branch)]($style) '"
 
