@@ -8,9 +8,6 @@ setopt APPEND_HISTORY # Append history instead of overwriting
 setopt HIST_IGNORE_DUPS # Ignore duplicate commands
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks
 
-
-
-
 # User configuration
 
 if [ -n "$DESKTOP_SESSION" ];then
@@ -62,8 +59,28 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
+# Enable tab completion menu
+zstyle ':completion:*' menu select
+
+# support cd ...
+cd-dot() {
+  if [[ "$1" == .* && "$1" != *[^.]* ]]; then
+    local depth=${#1}
+    local -a parts=()
+    for ((i=1; i<depth; i++)); do
+      parts+=("..")
+    done
+    builtin cd "${(j:/:)parts}"
+  else
+    builtin cd "$@"
+  fi
+}
+
+alias cd='cd-dot'
+
 alias setxb="setxkbmap -layout us -option ctrl:nocaps"
-# `command emacs` to run the gui version
+
+# `command emacs` with run the gui version
 alias emacs='emacs -nw'
 
 export PATH="$HOME/.cache/.wasm-pack/.wasm-bindgen-cargo-install-0.2.84/bin:$PATH"
